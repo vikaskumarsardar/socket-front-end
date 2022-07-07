@@ -36,8 +36,16 @@ export default function Socket({ setLogged }) {
     e.preventDefault();
     const details = JSON.parse(localStorage.getItem("user"));
     userDetails = { ...details, createdAt: Date(), message: data.message };
+    setData({
+      message : "",
+      username: "",
+      message: "",
+      createdAt: Date(),
+      id: "",
+    })
     setMessageArray((res) => [userDetails, ...res]);
     socket.emit("chat message", userDetails);
+    
   };
 
   const handleChange = (e) => {
@@ -61,7 +69,6 @@ export default function Socket({ setLogged }) {
       })
     setLogged(false);
   };
-
   return (
     <div className="App">
       <button onClick={logOut}>
@@ -69,7 +76,7 @@ export default function Socket({ setLogged }) {
       </button>
       <h5>Messsaging App</h5>
       <form onSubmit={handleSubmit} spellCheck={false}>
-        <input type="text" onChange={handleChange} />
+        <input type="text" value={data.message} onChange={handleChange} />
       </form>
       <div id="messages">
         <h5>{messageArray.length}</h5>
