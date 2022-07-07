@@ -10,7 +10,6 @@ function App() {
     <BR>
     <Routes>
     <Route path="/login" element={<Login/>} />
-    <Route path="/socket" element={<Socket/>} />
     </Routes>
     </BR>
 
